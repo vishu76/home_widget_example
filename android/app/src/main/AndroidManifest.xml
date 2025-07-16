@@ -32,12 +32,11 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-        <!-- Inside <application> tag -->
-        <receiver android:name=".HomeWidgetProvider"
-            android:exported="true">
+        <receiver android:name=".HomeWidgetProvider" android:exported="true">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.example.home_widget_example.ACTION_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="UPDATE_TIME"/>
+                <action android:name="SET_REMINDER"/>
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
