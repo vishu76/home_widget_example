@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:workmanager/workmanager.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
+
+  // static const platform = MethodChannel('com.example/my_channel');
+
   Future<void> _updateTime() async {
     final now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd – kk:mm:ss').format(now);
@@ -37,10 +41,10 @@ class HomeScreen extends StatelessWidget {
   }
 
   Future<void> _setReminder() async {
-    await Workmanager().registerOneOffTask(
-      'reminderTask', 'reminderTask',
-      initialDelay: Duration(seconds: 20),
-    );
+    // await Workmanager().registerOneOffTask(
+    //   'reminderTask', 'reminderTask',
+    //   initialDelay: Duration(seconds: 20),
+    // );
   }
   void _openAppFromWidget(Uri? uri) {
     // handle deep link if needed
@@ -49,6 +53,15 @@ class HomeScreen extends StatelessWidget {
       print('_openAppFromWidget update_time${uri?.host}');
     }
   }
+
+  // Future<void> callKotlinMethod() async {
+  //   try {
+  //     final result = await platform.invokeMethod('myKotlinMethod');
+  //     print(result);
+  //   } on PlatformException catch (e) {
+  //     print("Failed to call Kotlin method: '${e.message}'.");
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     HomeWidget.registerInteractivityCallback(_openAppFromWidget);
